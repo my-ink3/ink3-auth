@@ -80,12 +80,6 @@ jobs:
     name: Run app + health check
     runs-on: ubuntu-latest
     needs: build
-
-    env:
-      # 테스트용 더미 키 경로
-      JWT_PRIVATE_KEY_PATH: ./private.pem
-      JWT_PUBLIC_KEY_PATH: ./public.pem
-
     steps:
       - uses: actions/checkout@v3
 
