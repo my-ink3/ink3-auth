@@ -31,7 +31,7 @@ jobs:
         run: |
           mvn clean verify -B \
             -Dspring.profiles.active=test \
-            -Dspring.cloud.config.enabled=false   # ⬅ Config Server 끄기
+            -Dspring.cloud.config.enabled=false
 
       - name: Upload built JAR
         uses: actions/upload-artifact@v4
@@ -58,24 +58,15 @@ jobs:
         with:
           name: app-jar
 
-      # 🔻🔻🔻 이 스텝은 삭제 (dummy pem 필요 없음)
-      # - name: Prepare dummy JWT key files
-      #   run: |
-      #     echo "dummy" > private.pem
-      #     echo "dummy" > public.pem
-      # 🔺🔺🔺
-
       - name: Run app
         run: |
           nohup java \
-            -Dspring.cloud.config.enabled=false \   # ⬅ Config Server 끄기
+            -Dspring.cloud.config.enabled=false \
             -Dspring.cloud.bus.enabled=false \
             -Deureka.client.enabled=false \
             -Dspring.cloud.discovery.enabled=false \
             -Dspring.data.redis.repositories.enabled=false \
-            -Dspring.autoconfigure.exclude=\
-org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,\
-org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration \
+            -Dspring.autoconfigure.exclude=org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration,org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration \
             -jar *.jar \
             --server.port=8080 \
             --spring.profiles.active=test > app.log 2>&1 &
@@ -100,7 +91,7 @@ org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration \
         run: |
           mvn test -B \
             -Dspring.profiles.active=test \
-            -Dspring.cloud.config.enabled=false   # ⬅ 여기서도 Config Server 끄기
+            -Dspring.cloud.config.enabled=false
 
       - name: Kill app
         if: always()
