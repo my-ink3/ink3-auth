@@ -165,6 +165,7 @@ jobs:
             export RABBITMQ_PORT=${{ secrets.RABBITMQ_PORT }}
             export RABBITMQ_USERNAME=${{ secrets.RABBITMQ_USERNAME }}
             export RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }}
+            export RABBITMQ_VIRTUAL_HOST=${{ secrets.RABBITMQ_VIRTUAL_HOST }}
             export PAYCO_CLIENT_ID=${{ secrets.PAYCO_CLIENT_ID }}
             export PAYCO_CLIENT_SECRET=${{ secrets.PAYCO_CLIENT_SECRET }}
             export DOORAY_MESSAGE_URL=${{ secrets.DOORAY_MESSAGE_URL }}
